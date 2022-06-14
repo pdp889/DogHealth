@@ -8,6 +8,7 @@ The goal of this project is to create a test API using Spring Boot, Hibernate, a
 Things which still need to be done:
 
 1. Login system should be implemented to use some sort of secure token, not just username
-2. Clean up query for dog edit - why error out if I don't get user
+2. Clean up queries for edits
 3. Test and unit tests
 4. Add hidden values so that applications.properties can be committed
+5. Host MySQL database within docker container
