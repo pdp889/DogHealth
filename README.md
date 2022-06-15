@@ -9,3 +9,4 @@ Things which still need to be done:
 
 1. Login system should be implemented to use some sort of secure token, not just username
 2. Write queries for edits
+3. Dates should be date objects
