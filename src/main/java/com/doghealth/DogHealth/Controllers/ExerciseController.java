@@ -26,12 +26,6 @@ public class ExerciseController {
         return exerciseManager.delete(id);
     }
 
-    @PostMapping(path="/editType")
-    public @ResponseBody
-    String editType(@RequestBody DhExerciseType exerciseType) {
-        return exerciseManager.edit(exerciseType);
-    }
-
     @GetMapping(path="/findTypeByName")
     public @ResponseBody
     DhExerciseType findTypeByName(@RequestParam String name) {

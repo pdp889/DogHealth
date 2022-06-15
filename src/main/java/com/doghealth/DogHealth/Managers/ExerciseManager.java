@@ -38,13 +38,6 @@ public class ExerciseManager {
         return exerciseTypeAccessor.getDhExerciseTypeByName(name);
     }
 
-    public String edit(DhExerciseType dhExerciseType) {
-        Optional<DhExerciseType> exerciseType = exerciseTypeAccessor.findById(dhExerciseType.getId());
-        if (!exerciseType.isPresent()) return "id not found";
-        exerciseTypeAccessor.save(dhExerciseType);
-        return "success";
-    }
-
     public String delete(Integer id) {
         Optional<DhExerciseType> exerciseType = exerciseTypeAccessor.findById(id);
         if (!exerciseType.isPresent()) return "id not found";

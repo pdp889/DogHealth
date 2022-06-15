@@ -37,13 +37,6 @@ public class FoodManager {
         return foodTypeAccessor.findDhFoodTypeByName(name);
     }
 
-    public String edit(DhFoodType dhFoodType) {
-        Optional<DhFoodType> foodType = foodTypeAccessor.findById(dhFoodType.getId());
-        if (!foodType.isPresent()) return "id not found";
-        foodTypeAccessor.save(dhFoodType);
-        return "success";
-    }
-
     public String delete(Integer id) {
         Optional<DhFoodType> dhFoodType = foodTypeAccessor.findById(id);
         if (!dhFoodType.isPresent()) return "id not found";

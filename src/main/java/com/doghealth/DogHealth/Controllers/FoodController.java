@@ -26,12 +26,6 @@ public class FoodController {
         return foodManager.delete(id);
     }
 
-    @PostMapping(path="/editType")
-    public @ResponseBody
-    String editType(@RequestBody DhFoodType dhFoodType) {
-        return foodManager.edit(dhFoodType);
-    }
-
     @GetMapping(path="/findTypeByName")
     public @ResponseBody
     DhFoodType findTypeByName(@RequestParam String name) {
