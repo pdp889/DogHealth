@@ -9,7 +9,10 @@ import com.doghealth.DogHealth.Helpers.BusinessLogicHelpers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Optional;
 
 @Service
@@ -65,7 +68,8 @@ public class FoodManager {
     public Iterable<DhFeeding> getFeedingsByDog(Integer dogId, String date) {
         Optional<DhDog> dog = dogAccessor.findById(dogId);
         if (!dog.isPresent()) return new HashSet<>();
-        return feedingAccessor.findDhFeedingByDateAndDhDog(date, dog.get());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy", Locale.ENGLISH);
+        return feedingAccessor.findDhFeedingByDateAndDhDog(LocalDate.parse(date, formatter), dog.get());
     }
 
     public int getCaloriesToAddFromFeedings(Integer dogId, String date) {

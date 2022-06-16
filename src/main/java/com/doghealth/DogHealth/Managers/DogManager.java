@@ -95,14 +95,13 @@ public class DogManager {
         if (!dog.isPresent()) return -1;
         Iterable<DhWeight> weightList = weightAccessor.findDhWeightByDhDog(dog.get());
 
-        //desperately need to fix this part...
         double weight = 0.0;
         LocalDate currentDate;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         LocalDate lastDate = LocalDate.parse("10-10-1950", formatter);
 
         for (DhWeight dhWeight : weightList) {
-            currentDate = LocalDate.parse(dhWeight.getDate(), formatter);
+            currentDate = dhWeight.getDate();
             if (currentDate.isAfter(lastDate)) {
                 lastDate = currentDate;
                 weight = dhWeight.getWeight();

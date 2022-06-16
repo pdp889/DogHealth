@@ -1,6 +1,10 @@
 package com.doghealth.DogHealth.Models;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.Locale;
 
 @Entity
 public class DhExercise {
@@ -15,19 +19,21 @@ public class DhExercise {
     @ManyToOne()
     private DhDog dhDog;
 
-    private String date;
+    private LocalDate date;
 
-    public String getDate() {
-        return date;
-    }
 
-    public void setDate(String date) {
-        this.date = date;
-    }
 
     private double durationInHours;
 
     public DhExercise(DhDog dhDog, DhExerciseType dhExerciseType, double durationInHours, String date) {
+        this.dhExerciseType = dhExerciseType;
+        this.durationInHours = durationInHours;
+        this.dhDog = dhDog;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy", Locale.ENGLISH);
+        this.date = LocalDate.parse(date, formatter);
+    }
+
+    public DhExercise(DhDog dhDog, DhExerciseType dhExerciseType, double durationInHours, LocalDate date) {
         this.dhExerciseType = dhExerciseType;
         this.durationInHours = durationInHours;
         this.dhDog = dhDog;
@@ -67,4 +73,12 @@ public class DhExercise {
     public void setDhDog(DhDog dhDog) {
         this.dhDog = dhDog;
     }
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
 }

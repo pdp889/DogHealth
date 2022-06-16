@@ -6,7 +6,9 @@ import com.doghealth.DogHealth.Models.DhFeeding;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
+
 @Repository
 public interface FeedingAccessor extends CrudRepository<DhFeeding, Integer> {
-    Iterable<DhFeeding> findDhFeedingByDateAndDhDog(String date, DhDog dog);
+    Iterable<DhFeeding> findDhFeedingByDateAndDhDog(LocalDate date, DhDog dog);
 }

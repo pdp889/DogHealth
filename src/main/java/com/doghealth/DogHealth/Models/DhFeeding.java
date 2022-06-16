@@ -1,6 +1,9 @@
 package com.doghealth.DogHealth.Models;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 @Entity
 public class DhFeeding {
@@ -15,17 +18,23 @@ public class DhFeeding {
     @ManyToOne()
     private DhDog dhDog;
 
-    private String date;
+    private LocalDate date;
 
     private Double quantityInOz;
 
     public DhFeeding(DhFoodType dhFoodType, DhDog dhDog, String date, Double quantityInOz) {
         this.dhFoodType = dhFoodType;
         this.dhDog = dhDog;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy", Locale.ENGLISH);
+        this.date = LocalDate.parse(date, formatter);
+        this.quantityInOz = quantityInOz;
+    }
+    public DhFeeding(DhFoodType dhFoodType, DhDog dhDog, LocalDate date, Double quantityInOz) {
+        this.dhFoodType = dhFoodType;
+        this.dhDog = dhDog;
         this.date = date;
         this.quantityInOz = quantityInOz;
     }
-
     public DhFeeding(){}
 
     public DhFoodType getDhFoodType() {
@@ -44,11 +53,11 @@ public class DhFeeding {
         this.dhDog = dhDog;
     }
 
-    public String getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

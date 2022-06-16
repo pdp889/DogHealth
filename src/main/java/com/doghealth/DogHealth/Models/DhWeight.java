@@ -1,6 +1,9 @@
 package com.doghealth.DogHealth.Models;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 @Entity
 public class DhWeight {
@@ -14,9 +17,16 @@ public class DhWeight {
     @ManyToOne()
     private DhDog dhDog;
 
-    private String date;
+    private LocalDate date;
 
     public DhWeight(double weight, DhDog dog, String date) {
+        this.weight = weight;
+        this.dhDog = dog;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy", Locale.ENGLISH);
+        this.date = LocalDate.parse(date, formatter);
+    }
+
+    public DhWeight(double weight, DhDog dog, LocalDate date) {
         this.weight = weight;
         this.dhDog = dog;
         this.date = date;
@@ -49,11 +59,11 @@ public class DhWeight {
         this.dhDog = dog;
     }
 
-    public String getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 }

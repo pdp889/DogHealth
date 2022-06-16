@@ -11,7 +11,10 @@ import com.doghealth.DogHealth.Helpers.BusinessLogicHelpers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Optional;
 
 @Service
@@ -66,7 +69,8 @@ public class ExerciseManager {
     public Iterable<DhExercise> getExerciseByDog(Integer dogId, String date) {
         Optional<DhDog> dog = dogAccessor.findById(dogId);
         if (!dog.isPresent()) return new HashSet<>();
-        return exerciseAccessor.findDhExerciseByDhDogAndDate(dog.get(), date);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy", Locale.ENGLISH);
+        return exerciseAccessor.findDhExerciseByDhDogAndDate(dog.get(), LocalDate.parse(date, formatter));
     }
 
     public int getCaloriesToDeductFromExercise(Integer dogId, String date) {

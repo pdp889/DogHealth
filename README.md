@@ -7,6 +7,5 @@ The goal of this project is to create a test API using Spring Boot, Hibernate, a
 
 Things which still need to be done:
 
-1. Login system should be implemented to use some sort of secure token, not just username
+1. Login system should be implemented to use some sort of secure token
 2. Write queries for edits
-3. Dates should be date objects
